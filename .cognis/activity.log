@@ -1,3 +1,4 @@
 2024-06-05T08:08:28  refactor(rules): load rules lazily for faster startup
 2024-06-27T15:25:35  refactor: I have altered the code. pray I don't alter it further
 2024-07-20T10:42:42  feat(scoring): respect .gitignore when walking
+2024-08-12T17:59:49  docs(engine): add a dry-run flag
