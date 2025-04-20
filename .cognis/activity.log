@@ -15,3 +15,4 @@
 2025-02-28T10:06:06  ci(rules): improve error messages with context
 2025-03-05T17:23:13  fix(tests): wire the MCP tool schema
 2025-03-28T12:40:20  refactor(scoring): handle empty and malformed input
+2025-04-20T19:57:27  style(engine): cover the multiline case
