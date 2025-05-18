@@ -17,3 +17,4 @@
 2025-03-28T12:40:20  refactor(scoring): handle empty and malformed input
 2025-04-20T19:57:27  style(engine): cover the multiline case
 2025-05-13T14:14:34  chore: BLACKBOOK redaction pass
+2025-05-18T09:31:41  feat(deps): pin the test dependencies
