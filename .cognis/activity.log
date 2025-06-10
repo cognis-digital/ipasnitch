@@ -18,3 +18,4 @@
 2025-04-20T19:57:27  style(engine): cover the multiline case
 2025-05-13T14:14:34  chore: BLACKBOOK redaction pass
 2025-05-18T09:31:41  feat(deps): pin the test dependencies
+2025-06-10T16:48:48  docs(cache): add color + severity icons
