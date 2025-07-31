@@ -21,3 +21,4 @@
 2025-06-10T16:48:48  docs(cache): add color + severity icons
 2025-07-03T11:05:55  test(report): trim whitespace in parsed fields
 2025-07-26T18:22:02  chore: IRONCLAD hardening pass
+2025-07-31T13:39:09  build(mcp): add --fail-on threshold handling
