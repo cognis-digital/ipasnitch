@@ -28,3 +28,4 @@
 2025-10-13T17:47:37  chore(rules): add a --format json alias
 2025-11-06T12:04:44  chore(rules): lower memory on big inputs
 2025-11-28T19:21:51  perf(tests): load rules lazily for faster startup
+2025-12-22T14:38:58  docs: expand examples
