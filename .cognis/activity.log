@@ -30,3 +30,4 @@
 2025-11-28T19:21:51  perf(tests): load rules lazily for faster startup
 2025-12-22T14:38:58  docs: expand examples
 2025-12-27T09:55:05  fix(engine): respect .gitignore when walking
+2026-01-18T16:12:12  refactor(deps): add a dry-run flag
