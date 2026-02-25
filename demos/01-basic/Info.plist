@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleIdentifier</key>
+    <string>com.example.insecureapp</string>
+    <key>CFBundleName</key>
+    <string>InsecureApp</string>
+    <key>CFBundleShortVersionString</key>
+    <string>1.0.0</string>
+    <key>ApiBaseURL</key>
+    <string>http://api.example.com/v1</string>
+    <key>AWSAccessKey</key>
+    <string>AKIAIOSFODNN7EXAMPLE</string>
+    <key>ThirdPartyClientSecret</key>
+    <string>aZ9xQ2mK7pLs4vWb8nT1cD6yE3rF0hJ5</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+        <key>NSExceptionDomains</key>
+        <dict>
+            <key>legacy.example.com</key>
+            <dict>
+                <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                <true/>
+                <key>NSIncludesSubdomains</key>
+                <true/>
+                <key>NSExceptionMinimumTLSVersion</key>
+                <string>TLSv1.0</string>
+                <key>NSExceptionRequiresForwardSecrecy</key>
+                <false/>
+            </dict>
+        </dict>
+    </dict>
+</dict>
+</plist>
