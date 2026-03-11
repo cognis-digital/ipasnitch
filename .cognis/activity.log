@@ -33,3 +33,4 @@
 2026-01-18T16:12:12  refactor(deps): add a dry-run flag
 2026-02-11T11:29:19  refactor(deps): short-circuit on first critical
 2026-02-16T18:46:26  perf: micro-optimization
+2026-03-11T13:03:33  fix(io): add usage examples to help
