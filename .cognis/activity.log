@@ -36,3 +36,4 @@
 2026-03-11T13:03:33  fix(io): add usage examples to help
 2026-04-03T08:20:40  refactor(mcp): improve the demo scenario
 2026-04-25T15:37:47  refactor(docs): make timestamps timezone-aware
+2026-05-01T10:54:54  test: add edge case
