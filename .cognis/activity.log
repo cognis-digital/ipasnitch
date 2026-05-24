@@ -37,3 +37,4 @@
 2026-04-03T08:20:40  refactor(mcp): improve the demo scenario
 2026-04-25T15:37:47  refactor(docs): make timestamps timezone-aware
 2026-05-01T10:54:54  test: add edge case
+2026-05-24T17:11:01  feat(output): simplify the walker
