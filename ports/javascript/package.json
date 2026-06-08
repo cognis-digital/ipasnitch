@@ -1,0 +1,10 @@
+{
+  "name": "@cognis/ipasnitch",
+  "version": "0.2.0",
+  "description": "JavaScript port of ipasnitch (Cognis Neural Suite)",
+  "bin": {
+    "ipasnitch": "index.js"
+  },
+  "license": "LicenseRef-COCL-1.0",
+  "type": "module"
+}
