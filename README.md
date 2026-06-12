@@ -16,7 +16,7 @@
 </div>
 
 ```bash
-pip install cognis-ipasnitch
+pip install "git+https://github.com/cognis-digital/ipasnitch.git"
 ipasnitch scan .            # → prioritized findings in seconds
 ```
 
@@ -48,7 +48,7 @@ Almost no good standalone CLI exists for .ipa static review on Linux CI runners;
 ## Quick start
 
 ```bash
-pip install cognis-ipasnitch
+pip install "git+https://github.com/cognis-digital/ipasnitch.git"
 ipasnitch --version
 ipasnitch scan .                       # scan current project
 ipasnitch scan . --format json         # machine-readable
