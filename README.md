@@ -20,6 +20,12 @@ pip install "git+https://github.com/cognis-digital/ipasnitch.git"
 ipasnitch scan .            # → prioritized findings in seconds
 ```
 
+<!-- cognis:layman:start -->
+## What is this?
+
+ipasnitch is a command-line tool that scans iOS app files (.ipa bundles and Info.plist configuration files) for common security weaknesses — without needing a Mac or a paid service. It catches things like disabled security settings, cleartext web addresses, and accidentally included passwords or API keys baked into the app. Developers and security reviewers run it locally or in automated build pipelines to catch these problems before an app ships.
+<!-- cognis:layman:end -->
+
 ## Contents
 
 - [Why ipasnitch?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
@@ -45,6 +51,42 @@ Almost no good standalone CLI exists for .ipa static review on Linux CI runners;
 <div align="right"><a href="#top">↑ back to top</a></div>
 
 <a name="quick-start"></a>
+<!-- cognis:install:start -->
+## Install
+
+`ipasnitch` is source-available (not published to PyPI) — every method below installs
+straight from GitHub. Pick whichever you prefer; the one-line scripts auto-detect
+the best tool available on your machine.
+
+**One-liner (Linux / macOS):**
+```sh
+curl -fsSL https://raw.githubusercontent.com/cognis-digital/ipasnitch/HEAD/install.sh | sh
+```
+
+**One-liner (Windows PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/cognis-digital/ipasnitch/HEAD/install.ps1 | iex
+```
+
+**Or install manually — any one of:**
+```sh
+pipx install "git+https://github.com/cognis-digital/ipasnitch.git"     # isolated (recommended)
+uv tool install "git+https://github.com/cognis-digital/ipasnitch.git"  # uv
+pip install "git+https://github.com/cognis-digital/ipasnitch.git"      # pip
+```
+
+**From source:**
+```sh
+git clone https://github.com/cognis-digital/ipasnitch.git
+cd ipasnitch && pip install .
+```
+
+Then run:
+```sh
+ipasnitch --help
+```
+<!-- cognis:install:end -->
+
 ## Quick start
 
 ```bash
