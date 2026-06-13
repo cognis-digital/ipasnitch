@@ -22,27 +22,37 @@ ipasnitch scan .            # → prioritized findings in seconds
 
 ## Usage — step by step
 
-`ipasnitch` is a static scanner for iOS `Info.plist` files: it flags ATS
-exceptions, weak transport, and embedded secrets. Single subcommand: `scan`.
+1. **Install:**
 
-```bash
-# 1. Install
-pip install -e .
+   ```bash
+   pip install ipasnitch
+   ```
 
-# 2. Scan one or more Info.plist files
-ipasnitch scan ./MyApp/Info.plist
+2. **Scan an Info.plist** — static scan for ATS exceptions, weak transport, and embedded secrets:
 
-# 3. Scan a set and emit JSON for triage tooling
-ipasnitch scan apps/*/Info.plist --format json > ipasnitch.json
+   ```bash
+   ipasnitch scan Info.plist
+   ```
 
-# 4. Read the result: each finding carries a severity; the exit code is
-#    non-zero when any finding meets/exceeds --fail-on (default: low).
-ipasnitch scan Info.plist --fail-on high
+   Findings are grouped by severity (critical / high / medium / low / info) with a fix recommendation each.
 
-# 5. CI gate — block a build on high-severity transport/secret findings
-ipasnitch scan "$APP/Info.plist" --fail-on high || exit 1
-```
+3. **Scan several plists at once:**
 
+   ```bash
+   ipasnitch scan App/Info.plist Extension/Info.plist
+   ```
+
+4. **Read the output** — JSON for piping, then filter:
+
+   ```bash
+   ipasnitch scan Info.plist --format json | jq '.results[].findings'
+   ```
+
+5. **CI gate** — fail the build only at/above a chosen severity (exit 0 clean, 1 gate tripped, 2 read/parse error):
+
+   ```bash
+   ipasnitch scan Info.plist --fail-on medium
+   ```
 
 ## Contents
 
