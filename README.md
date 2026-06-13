@@ -20,6 +20,30 @@ pip install cognis-ipasnitch
 ipasnitch scan .            # → prioritized findings in seconds
 ```
 
+## Usage — step by step
+
+`ipasnitch` is a static scanner for iOS `Info.plist` files: it flags ATS
+exceptions, weak transport, and embedded secrets. Single subcommand: `scan`.
+
+```bash
+# 1. Install
+pip install -e .
+
+# 2. Scan one or more Info.plist files
+ipasnitch scan ./MyApp/Info.plist
+
+# 3. Scan a set and emit JSON for triage tooling
+ipasnitch scan apps/*/Info.plist --format json > ipasnitch.json
+
+# 4. Read the result: each finding carries a severity; the exit code is
+#    non-zero when any finding meets/exceeds --fail-on (default: low).
+ipasnitch scan Info.plist --fail-on high
+
+# 5. CI gate — block a build on high-severity transport/secret findings
+ipasnitch scan "$APP/Info.plist" --fail-on high || exit 1
+```
+
+
 ## Contents
 
 - [Why ipasnitch?](#why) · [Features](#features) · [Quick start](#quick-start) · [Example](#example) · [Architecture](#architecture) · [AI stack](#ai-stack) · [How it compares](#how-it-compares) · [Integrations](#integrations) · [Install anywhere](#install-anywhere) · [Related](#related) · [Contributing](#contributing)
