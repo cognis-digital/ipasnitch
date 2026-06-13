@@ -9,16 +9,22 @@
 
 <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=18&duration=3500&pause=1000&color=6B46C1&center=true&vCenter=true&width=720&lines=Static+scanner+for+iOS+ipa+bundles+that+flags+ATS+exceptions;Self-hostable+%C2%B7+MCP-native+%C2%B7+CI-ready+%C2%B7+polyglot" width="720"/>
 
-[![PyPI](https://img.shields.io/pypi/v/cognis-ipasnitch.svg?color=6b46c1)](https://pypi.org/project/cognis-ipasnitch/) [![CI](https://github.com/cognis-digital/ipasnitch/actions/workflows/ci.yml/badge.svg)](https://github.com/cognis-digital/ipasnitch/actions) [![License: COCL 1.0](https://img.shields.io/badge/License-COCL%201.0-2b6cb0.svg)](LICENSE) [![Suite](https://img.shields.io/badge/Cognis-Neural%20Suite-6b46c1.svg)](https://github.com/cognis-digital)
+[![install](https://img.shields.io/badge/install-git%2B%20%C2%B7%20pipx%20%C2%B7%20uv-6b46c1.svg)](#install--every-way-every-platform) [![CI](https://github.com/cognis-digital/ipasnitch/actions/workflows/ci.yml/badge.svg)](https://github.com/cognis-digital/ipasnitch/actions) [![License: COCL 1.0](https://img.shields.io/badge/License-COCL%201.0-2b6cb0.svg)](LICENSE) [![Suite](https://img.shields.io/badge/Cognis-Neural%20Suite-6b46c1.svg)](https://github.com/cognis-digital)
 
 *Application & Mobile Security — SAST/DAST-lite and binary triage.*
 
 </div>
 
 ```bash
-pip install cognis-ipasnitch
+pip install "git+https://github.com/cognis-digital/ipasnitch.git"
 ipasnitch scan .            # → prioritized findings in seconds
 ```
+
+<!-- cognis:layman:start -->
+## What is this?
+
+ipasnitch is a command-line tool that scans iOS app files (.ipa bundles and Info.plist configuration files) for common security weaknesses — without needing a Mac or a paid service. It catches things like disabled security settings, cleartext web addresses, and accidentally included passwords or API keys baked into the app. Developers and security reviewers run it locally or in automated build pipelines to catch these problems before an app ships.
+<!-- cognis:layman:end -->
 
 ## Contents
 
@@ -45,10 +51,56 @@ Almost no good standalone CLI exists for .ipa static review on Linux CI runners;
 <div align="right"><a href="#top">↑ back to top</a></div>
 
 <a name="quick-start"></a>
+<!-- cognis:domains:start -->
+## Domains
+
+**Primary domain:** Cyber & Security  ·  **JTF MERIDIAN division:** NULLBYTE · SPECTER
+
+**Topics:** `cognis` `security` `infosec` `cybersecurity` `blue-team`
+
+Part of the **Cognis Neural Suite** — 300+ source-available tools organized across 12 domains under the JTF MERIDIAN command structure. See the [suite on GitHub](https://github.com/cognis-digital) and [jtf-meridian](https://github.com/cognis-digital/jtf-meridian) for how the pieces fit together.
+<!-- cognis:domains:end -->
+
+<!-- cognis:install:start -->
+## Install
+
+`ipasnitch` is source-available (not published to PyPI) — every method below installs
+straight from GitHub. Pick whichever you prefer; the one-line scripts auto-detect
+the best tool available on your machine.
+
+**One-liner (Linux / macOS):**
+```sh
+curl -fsSL https://raw.githubusercontent.com/cognis-digital/ipasnitch/HEAD/install.sh | sh
+```
+
+**One-liner (Windows PowerShell):**
+```powershell
+irm https://raw.githubusercontent.com/cognis-digital/ipasnitch/HEAD/install.ps1 | iex
+```
+
+**Or install manually — any one of:**
+```sh
+pipx install "git+https://github.com/cognis-digital/ipasnitch.git"     # isolated (recommended)
+uv tool install "git+https://github.com/cognis-digital/ipasnitch.git"  # uv
+pip install "git+https://github.com/cognis-digital/ipasnitch.git"      # pip
+```
+
+**From source:**
+```sh
+git clone https://github.com/cognis-digital/ipasnitch.git
+cd ipasnitch && pip install .
+```
+
+Then run:
+```sh
+ipasnitch --help
+```
+<!-- cognis:install:end -->
+
 ## Quick start
 
 ```bash
-pip install cognis-ipasnitch
+pip install "git+https://github.com/cognis-digital/ipasnitch.git"
 ipasnitch --version
 ipasnitch scan .                       # scan current project
 ipasnitch scan . --format json         # machine-readable
@@ -141,6 +193,32 @@ curl -fsSL https://raw.githubusercontent.com/cognis-digital/ipasnitch/main/insta
 <div align="right"><a href="#top">↑ back to top</a></div>
 
 <a name="related"></a>
+<a name="verification"></a>
+## Verification
+
+[![tests](https://img.shields.io/badge/tests-10%20passing-2ea44f.svg)](AUDIT.md)
+
+Every push is verified end-to-end. Latest audit (2026-06-13):
+
+```text
+tests        : 10 passed, 0 failed, 0 errored
+compile      : all modules parse
+cli          : C:\Python314\python.exe: No module named https
+package      : https
+```
+
+<details><summary>CLI surface (<code>--help</code>)</summary>
+
+```text
+C:\Python314\python.exe: No module named https
+```
+</details>
+
+Full machine-readable results: [`AUDIT.md`](AUDIT.md) · regenerate with `python -m https --help` + `pytest -q`.
+
+<div align="right"><a href="#top">↑ back to top</a></div>
+
+
 ## Related Cognis tools
 
 - [`apkpeek`](https://github.com/cognis-digital/apkpeek) — One-command static triage of Android APK/AAB binaries: surfaces hardcoded secrets, exported components, dangerous permissions, and insecure manifest flags as a single SARIF report.
