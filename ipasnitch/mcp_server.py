@@ -1,6 +1,10 @@
 """IPASNITCH MCP server — exposes scan() as an MCP tool for Cognis.Studio."""
 from __future__ import annotations
-from ipasnitch.core import scan, to_json
+
+import json
+
+from ipasnitch.core import scan_file
+
 
 def serve() -> int:
     """Start an MCP stdio server. Requires the optional 'mcp' extra:
@@ -15,8 +19,13 @@ def serve() -> int:
 
     @app.tool()
     def ipasnitch_scan(target: str) -> str:
-        """Static scanner for iOS .ipa bundles that flags ATS exceptions, missing entitlements hardening, embedded URLs/secrets, and weak Info.plist transport settings.. Returns JSON findings."""
-        return to_json(scan(target))
+        """Static scanner for iOS .ipa bundles that flags ATS exceptions,
+        missing entitlements hardening, embedded URLs/secrets, and weak
+        Info.plist transport settings. Returns JSON findings."""
+        if not target or not target.strip():
+            return json.dumps({"error": "target path must not be empty"})
+        result = scan_file(target.strip())
+        return json.dumps(result.to_dict(), indent=2)
 
     app.run()
     return 0

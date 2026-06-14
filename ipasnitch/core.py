@@ -53,7 +53,9 @@ class ScanResult:
     def counts(self) -> dict:
         c = {k: 0 for k in SEVERITY_ORDER}
         for f in self.findings:
-            c[f.severity] += 1
+            # Guard against an unrecognised severity level; treat as 'info'.
+            key = f.severity if f.severity in c else "info"
+            c[key] += 1
         return c
 
     def to_dict(self) -> dict:
@@ -73,8 +75,10 @@ def parse_plist(data: bytes) -> dict:
     """Parse plist bytes (XML or binary) into a Python dict.
 
     Uses the stdlib plistlib, which handles both Apple XML and binary (bplist)
-    formats. Raises ValueError on malformed input or a non-dict root.
+    formats. Raises ValueError on malformed input, empty data, or a non-dict root.
     """
+    if not data:
+        raise ValueError("plist data is empty")
     try:
         obj = plistlib.loads(data)
     except Exception as exc:  # plistlib raises a variety of errors
@@ -329,6 +333,9 @@ def scan_plist(plist: dict, source: str = "<memory>") -> ScanResult:
 
 def scan_file(path: str) -> ScanResult:
     """Read and scan a plist file from disk."""
+    if not path or not str(path).strip():
+        return ScanResult(source=str(path), error="path must not be empty")
+    path = str(path)  # Accept pathlib.Path objects gracefully.
     try:
         with open(path, "rb") as fh:
             data = fh.read()

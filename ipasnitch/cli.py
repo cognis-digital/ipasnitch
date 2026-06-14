@@ -81,12 +81,19 @@ def build_parser() -> argparse.ArgumentParser:
     return p
 
 
-def main(argv: Optional[list] = None) -> int:
+def _run(argv: Optional[list] = None) -> int:
+    """Parse args and execute the scan. Returns an exit code."""
     parser = build_parser()
     args = parser.parse_args(argv)
 
     if args.command != "scan":
         parser.print_help()
+        return 2
+
+    # Validate: reject empty path list (argparse nargs="+" prevents this, but
+    # an explicit guard catches any hypothetical bypass).
+    if not args.plists:
+        print("error: at least one plist path is required", file=sys.stderr)
         return 2
 
     threshold = SEVERITY_ORDER[args.fail_on]
@@ -98,7 +105,7 @@ def main(argv: Optional[list] = None) -> int:
         if r.error:
             had_error = True
         for f in r.findings:
-            if SEVERITY_ORDER[f.severity] >= threshold:
+            if SEVERITY_ORDER.get(f.severity, 0) >= threshold:
                 gate_tripped = True
 
     if args.format == "json":
@@ -115,6 +122,18 @@ def main(argv: Optional[list] = None) -> int:
     if had_error:
         return 2
     return 1 if gate_tripped else 0
+
+
+def main(argv: Optional[list] = None) -> int:
+    """Entry point — wraps _run() so unexpected errors print a clean message."""
+    try:
+        return _run(argv)
+    except KeyboardInterrupt:
+        print("\nInterrupted.", file=sys.stderr)
+        return 2
+    except Exception as exc:  # pragma: no cover
+        print(f"ipasnitch: unexpected error: {exc}", file=sys.stderr)
+        return 2
 
 
 if __name__ == "__main__":
