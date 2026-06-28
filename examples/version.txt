@@ -1,0 +1,3 @@
+$ ipasnitch-emit --version
+
+ipasnitch 0.1.0

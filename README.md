@@ -20,6 +20,57 @@ pip install cognis-ipasnitch
 ipasnitch scan .            # → prioritized findings in seconds
 ```
 
+
+<!-- cognis:example:start -->
+## 🔎 Example output
+
+Real, reproducible output from the tool — runs offline:
+
+```console
+$ ipasnitch-emit --version
+ipasnitch 0.1.0
+```
+
+```console
+$ ipasnitch-emit --help
+usage: ipasnitch [-h] [--version] {scan} ...
+
+Static scanner for iOS Info.plist: ATS exceptions, weak transport, embedded secrets.
+
+positional arguments:
+  {scan}
+    scan      scan one or more Info.plist files
+
+options:
+  -h, --help  show this help message and exit
+  --version   show program's version number and exit
+
+examples:
+  ipasnitch scan Info.plist
+  ipasnitch scan Info.plist --format json | jq .
+  ipasnitch scan Info.plist --fail-on high
+```
+
+> Blocks above are real `ipasnitch` output — reproduce them from a clone.
+
+**Sample result format** _(illustrative values — run on your own data for real findings):_
+
+```
+{
+"findings": [
+    {
+        "id": "1234567890",
+        "title": "Suspicious Activity Detected",
+        "description": "An unknown actor has accessed our network.",
+        "created_by": "John Doe",
+        "created_at": "2023-02-20T14:30:00Z"
+    }
+]
+}
+```
+
+<!-- cognis:example:end -->
+
 ## Usage — step by step
 
 1. **Install:**
